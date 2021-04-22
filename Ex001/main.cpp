@@ -1,7 +1,23 @@
+#include <ctime>
+#include <fstream>
 #include <iostream>
+#include <random>
 #include <string>
 
-int lenghtOfLargerSubstring(std::string s){
+std::string randomString(long int length)
+{
+	std::string sample = "abcdefghijklmnopqrstuvwxyz";
+	std::string str;
+	int j=0;
+	for(int i=0; i< length; i++){
+		j=rand()%25;
+		str+=sample[j];
+	}
+	return str;
+}
+
+int lenghtOfLargerSubstring(std::string s)
+{
 	int length=1, j=0, k=1, n=1;
 	exit_loop:
 	for( k=n; k<=static_cast<int>(s.length()); k++ ){
@@ -17,8 +33,25 @@ int lenghtOfLargerSubstring(std::string s){
 	return length;
 }
 
-int main(){
+void complexityTest()
+{
+	std::fstream inFile;
+	std::string filename="grid.dat";
+	inFile.open(filename, std::ios::in);
+	clock_t t;
+	for (int i=0; i<=9; i++){
+		std::string s=randomString(pow(10,i));
+		t = clock();
+		lenghtOfLargerSubstring(s);
+		t = clock()- t;
+		inFile << pow(10,i) << "\t" <<  t/static_cast<float>(CLOCKS_PER_SEC) << std::endl;
+	}
+}
+
+int main()
+{
 	std::string s="abrkaabcdefghijjxxx";
-	std::cout << "Length= " << lenghtOfLargerSubstring(s) << std::endl;
+	std::cout << "L= " << lenghtOfLargerSubstring(s) << std::endl;
+	// complexityTest();
 	return 0;
 }
