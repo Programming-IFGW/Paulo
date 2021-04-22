@@ -23,3 +23,7 @@ Input: "abrkaabcdefghijjxxx"
 
 Output: 10
 ```
+
+The complexity test shows the linear behavior of the algorithm. 
+
+![complexity](https://github.com/Programming-IFGW/Paulo/blob/main/Ex001/complexity_test.png)
