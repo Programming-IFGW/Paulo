@@ -36,15 +36,15 @@ int lenghtOfLargerSubstring(std::string s)
 void complexityTest()
 {
 	std::fstream inFile;
-	std::string filename="grid.dat";
-	inFile.open(filename, std::ios::in);
+	std::string filename="plot.dat";
+	inFile.open(filename, std::ios::out);
 	clock_t t;
-	for (int i=0; i<=9; i++){
-		std::string s=randomString(pow(10,i));
+	for (long int i=1; i<=1e9; i*=5){
+		std::string s=randomString(i);
 		t = clock();
 		lenghtOfLargerSubstring(s);
 		t = clock()- t;
-		inFile << pow(10,i) << "\t" <<  t/static_cast<float>(CLOCKS_PER_SEC) << std::endl;
+		inFile << i << "\t" <<  t/static_cast<double>(CLOCKS_PER_SEC) << std::endl;
 	}
 }
 
@@ -52,6 +52,7 @@ int main()
 {
 	std::string s="abrkaabcdefghijjxxx";
 	std::cout << "L= " << lenghtOfLargerSubstring(s) << std::endl;
-	// complexityTest();
+	complexityTest();
+	std::cout << "Done!" << std::endl;
 	return 0;
 }
