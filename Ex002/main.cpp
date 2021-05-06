@@ -4,10 +4,10 @@
 #include <random>
 #include <string>
 
-int longestPalindrome(std::string s)
+void longestPalindrome(std::string s)
 {
 	int n=static_cast<int>(s.length());
-	int length=1, l;
+	int length=1, l, a, b;
 
 	for(int i=0; i<n; i++){
 		for(int j=i+1; j<=n; j++){
@@ -22,17 +22,24 @@ int longestPalindrome(std::string s)
 					}
 				}
 			}
-			if (l>=length) length=l;
+			if (l>=length){
+				length=l;
+				a=i;
+			}
 		}
 	}
-	return length;
+	std::cout << "Longuest palindrome: ";
+	for (int i=a; i<length+a; i++){
+		std::cout << s[i];
+	}
+	std::cout << "\nSize of longest palindrome: " << length << std::endl;
 }
 
 int main()
 {
-	std::string s="banana";
+	std::string s="bananas";
 	// std::string s="million";
 	// std::string s="tracecars";
-	std::cout << "Size of the longest palindrome: " << longestPalindrome(s) << std::endl;
+	longestPalindrome(s);
 	return 0;
 }
