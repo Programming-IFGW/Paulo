@@ -6,42 +6,33 @@
 
 int longestPalindrome(std::string s)
 {
-	int i, j, k=0,l, n, size=1;
-	n=static_cast<int>(s.length());
-	k=n;
-	char a[n];
-	exit_loop:
-	for (i=0; i<n; i++){
-		for (int j=i+1; j<=n; j++){
+	int n=static_cast<int>(s.length());
+	int length=1, l;
+
+	for(int i=0; i<n; i++){
+		for(int j=i+1; j<=n; j++){
 			l=1;
-			if(s[i]==s[j]){
-				std::cout << s[i] << "\t" << i << "\t" << j << std::endl;	
-				k--;
-				a[i] = s[i];
-				a[j] = s[j];
-				l++;
+			if (s[i]==s[j]){	
+				for (int k=1; k<=j-i; k++){
+					if(s[i+k] == s[j-k]){
+						l++;
+					}
+					else{
+						break;
+					}
+				}
 			}
+			if (l>=length) length=l;
 		}
-		if(size <= l) size = l;
-	}	
-	
-	std::cout << size << std::endl;
-
-	for (auto x:a){
-		std::cout << x;
 	}
-
-	std::cout << "\n";
-	return size;
+	return length;
 }
-
 
 int main()
 {
 	std::string s="banana";
 	// std::string s="million";
 	// std::string s="tracecars";
-	longestPalindrome(s);
-	std::cout << "Done!" << std::endl;
+	std::cout << "Size of the longest palindrome: " << longestPalindrome(s) << std::endl;
 	return 0;
 }
